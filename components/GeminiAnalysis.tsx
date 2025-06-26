@@ -20,10 +20,6 @@ export const GeminiAnalysis: React.FC<GeminiAnalysisProps> = ({ data }) => {
         setIsLoading(true);
         setError(null);
         try {
-          // Check for placeholder API key
-          if (!process.env.API_KEY || process.env.API_KEY === 'YOUR_API_KEY') {
-             throw new Error("Gemini API key not configured.");
-          }
           const result = await getEnergyAnalysis(data);
           setAnalysis(result);
         } catch (err: any) {
@@ -52,7 +48,7 @@ export const GeminiAnalysis: React.FC<GeminiAnalysisProps> = ({ data }) => {
       ) : error ? (
         <div className="bg-yellow-900/50 border border-yellow-500/30 p-4 rounded-lg text-yellow-200">
             <h4 className="font-bold">Analysis Unavailable</h4>
-            <p className="text-sm">{error} Please ensure your Gemini API key is correctly configured in the environment variables.</p>
+            <p className="text-sm">{error}</p>
         </div>
       ) : (
         <div className="text-gray-300 space-y-4 whitespace-pre-wrap font-mono text-sm">

@@ -3,10 +3,8 @@ import { GoogleGenAI } from "@google/genai";
 import type { EnergyPricePoint } from '../types';
 
 export const getEnergyAnalysis = async (data: EnergyPricePoint[]): Promise<string> => {
-  if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable not set");
-  }
-
+  // The API key is expected to be in the environment variables.
+  // The GoogleGenAI constructor will use it.
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   const simplifiedData = data.map(p => ({
@@ -38,6 +36,6 @@ export const getEnergyAnalysis = async (data: EnergyPricePoint[]): Promise<strin
     return response.text;
   } catch (error) {
     console.error("Error calling Gemini API:", error);
-    return "An error occurred while analyzing the energy data. The AI analysis is currently unavailable.";
+    throw new Error("An error occurred while analyzing the energy data. The AI analysis is currently unavailable.");
   }
 };
