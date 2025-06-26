@@ -1,0 +1,6 @@
+{
+  "name": "Energy Price Tracker",
+  "description": "An application to visualize historical energy prices and calculate the optimal time to run appliances, with AI-powered analysis.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
