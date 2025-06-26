@@ -2,6 +2,8 @@
 
 An application to visualize historical energy prices and calculate the optimal time to run appliances, with AI-powered analysis from Google's Gemini.
 
+<img src="public/screenshot.png" alt="Energy Price Chart" width="600"/>
+
 ## 🌟 Features
 
 - **Interactive Price Chart**: View the last 7 days of hourly electricity prices in an intuitive and responsive chart.
