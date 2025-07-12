@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { EnergyPriceChart } from './components/EnergyPriceChart';
 import { ApplianceCostCalculator } from './components/ApplianceCostCalculator';
 import { GeminiAnalysis } from './components/GeminiAnalysis';
-import { mockEnergyService } from './services/eiaService';
+import { energyService } from './services/eiaService';
 import type { EnergyPricePoint } from './types';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -18,11 +18,11 @@ const App: React.FC = () => {
       try {
         setIsLoading(true);
         setError(null);
-        // In a real app, this would be an API call. We use a mock service.
-        const data = await mockEnergyService.getWeeklyPriceData();
+        // Data is now fetched from the Gemini-powered service
+        const data = await energyService.getWeeklyPriceData();
         setEnergyData(data);
-      } catch (err) {
-        setError("Failed to fetch energy data. Please try again later.");
+      } catch (err: any) {
+        setError(err.message || "Failed to fetch energy data. Please try again later.");
         console.error(err);
       } finally {
         setIsLoading(false);
@@ -42,7 +42,8 @@ const App: React.FC = () => {
           </div>
         ) : error ? (
           <div className="text-center text-red-400 bg-red-900/20 p-4 rounded-lg">
-            {error}
+            <p className="font-bold">An Error Occurred</p>
+            <p>{error}</p>
           </div>
         ) : (
           <div className="space-y-8">

@@ -30,7 +30,7 @@ export const getEnergyAnalysis = async (data: EnergyPricePoint[]): Promise<strin
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-preview-04-17",
+      model: "gemini-2.5-flash",
       contents: prompt,
     });
     return response.text;
